@@ -349,3 +349,94 @@ print("Test input #2 for problem5")
 print("G x H")
 print(matrix_matrix_multi(matrix_h,matrix_g))
 print("the answer should be [[33,33,24],[37,37,27],[60,60,45]] ")
+
+
+#######################################################################################################################################################################
+
+
+
+#hw4
+
+#Problem1
+
+def abs_value(scalar: complex)-> float:
+    """A function that returns the absolute value of real and complex numbers
+    Args: A complex or real number
+    Returns: The absolute value of the input as a float
+    """
+    z = scalar.conjugate()
+    x = (scalar*z)**(1/2)
+    return x.real
+print(abs_value(9+10j))
+print(abs_value(-9))
+print("1. Test input 1 should be 13.453624..")
+print('1. Test input 2 should be 9')
+
+#Problem2
+"""A function that returns the P-Norm of a vector. Runs the absolute value function on the vector and 
+   raise to the exponent of the scalar, sums the elements, then raises to the 1/scalar
+   Args: A vector stored as a List, A scalar stored as a float
+   Returns: The p-norm as a float """
+def p_norm(vector: list, scalar: float)->float:
+    result = 0
+    for index in range(len(vector)):
+        y = (abs_value(vector[index]))**scalar
+        result = result + y
+    result = result**(1/scalar)
+    return result
+
+print(p_norm([1,2,3],2))
+print(p_norm([-1,2,-3],3))
+print("2. test input 1 should be 3.741657..")
+print("2. test input 2 should be 3.301927...")
+
+
+#problem 3
+"""A function that finds the infinity norm which is the max value
+   Args: Vector stored as a list
+   Returns: thr infinity norm returned as a float"""
+def infinity_norm(vector: list)-> float:
+    result = []
+    for index in range(len(vector)):
+        result.append(abs_value(vector[index]))
+
+
+    result = max(result)
+    return result
+
+print(infinity_norm([1,2+5j,3]))
+print(infinity_norm([-20,2,3]))
+print("3. infinity norm should be 5.385164..")
+print("3. infinity norm should be 20")
+
+#problem4
+"""A function that returns the p norm or a boolean value depending on the inputs
+   Args: Vector stored as a list, Boolean value as False as default, and a scalar stored as a float, default 2
+    Returns:: the p norm as a float"""
+def boolean_p_norm(vector: list, boolean: bool = False, scalar: float = 2 )->float:
+    if boolean ==True:
+        x = infinity_norm(vector)
+    else:
+        x = p_norm(vector,scalar)
+    return x
+
+print(boolean_p_norm([4,2,7]))
+print(boolean_p_norm([5,5,5]))
+print("4.test input 1 should be 8.3066..")
+print("4. test input 2 should be 8.66025..")
+
+#problem 5
+"""A function that returns the inner product of two vectors
+   Args: Vector a and Vector b stored as lists
+   Returns: the inner product returned as a float"""
+def inner_product(vector_a: list, vector_b: list)->float:
+    result = 0
+    for index in range(len(vector_a)):
+        y = vector_a[index]*vector_b[index]
+        result = result + y
+    return result
+
+print(inner_product([1,2,5+6j],[4,3,5+6j]))
+print(inner_product([1,1,1],[3,4,5]))
+print("5. inner product should be -1+60j")
+print("5. inner product 2 should be 12")
