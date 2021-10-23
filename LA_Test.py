@@ -82,3 +82,57 @@ def test_matrix_matrix_multi_02():
 
 ####I believe the last two tests failed because there might be an index error.
 ###I may have gotten the arguements mixed up when defining matrix_vector_multiplication
+
+#####           HW4 tests
+
+
+scalar_a = -9
+scalar_b = -15
+p_norm_vector_01 = [1,2,3]
+p_norm_scalar_01 = 2
+p_norm_vector_02 = [-1,2,-3]
+p_norm_scalar_02 = 3
+infinity_vector_01 = [1,2+5j,3]
+infinity_vector_02 = [-20,2,3]
+boolean_p_norm_vector_01 = [4,2,5]
+boolean_p_norm_vector_02 = [3,5,6]
+inner_product_vector_01 = [1,2,5+6j]
+inner_product_vector_02 = [4,3,5+6j]
+inner_product_vector_03 = [1,5,7]
+inner_product_vector_04 = [3,5,6+3j]
+
+
+
+
+
+def test_abs_value_01():
+    print(LA1.abs_value(scalar_a))
+    assert LA1.abs_value(scalar_a) == 9.0
+
+def test_abs_value_02():
+    assert LA1.abs_value(scalar_b) == 15.0
+
+def test_p_norm_01():
+    assert LA1.p_norm(p_norm_vector_01,p_norm_scalar_01) == 3.7416573867739413
+
+def test_p_norm_02():
+    assert LA1.p_norm(p_norm_vector_02,p_norm_scalar_02) == 3.3019272488946263
+
+def test_infinity_norm_01():
+    assert LA1.infinity_norm(infinity_vector_01) == 5.385164807134504
+
+def test_infinity_norm_02():
+    assert LA1.infinity_norm(infinity_vector_02) == 20.0
+
+def test_boolean_p_norm_01():
+    assert LA1.boolean_p_norm(boolean_p_norm_vector_01) == 6.708203932499369
+
+def test_boolean_p_norm_02():
+    assert LA1.boolean_p_norm(boolean_p_norm_vector_02) == 8.366600265340756
+
+def test_inner_product_01():
+    assert LA1.inner_product(inner_product_vector_01,inner_product_vector_02) == (-1+60j)
+
+def test_inner_product_02():
+    assert LA1.inner_product(inner_product_vector_03,inner_product_vector_04) == (70+21j)
+
