@@ -1,5 +1,5 @@
-#import QR
-#import LA
+import QR
+import LA
 
 def backsub(matrix_a: list, vector_a:list) -> list:
     """This Function solves the upper triangular matrix and an input vector to return the solution vector, where
