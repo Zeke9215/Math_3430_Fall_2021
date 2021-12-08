@@ -26,11 +26,7 @@ def add_vectors(vector_a: list[float],
 
 #1. Scalar Vector Multiplication  #########################################################################
 
-vector_a = [1,2,3]
-scalar_a = 3
 
-vector_q = [3,3,3]
-scalar_q = 10
 
 def scalar_vector_multi(scalar_a:float, vector_a:list)->list:
     "Multiplies the vector stored as a list by a scalar"
@@ -64,11 +60,7 @@ print(scalar_vector_multi(scalar_a,vector_a))
 #2.Matrix-Scalar Multiplication #############################################################################
 
 
-matrix_a = [[2,1,2,],[3,1,3],[5,5,5]]
-scalar_b = 5
 
-matrix_w = [[1,2,3],[3,2,1],[5,5,5]]
-scalar_w = 2
 
 
 def scalar_matrix_multi(scalar_b:float,matrix_a:list)->list:
@@ -99,11 +91,7 @@ def scalar_matrix_multi(scalar_b:float,matrix_a:list)->list:
 
 #3  ###########
 
-matrix_b = [[1, 1, 1], [2, 2, 2], [3, 3, 3]]
-matrix_c = [[10, 1, 10], [1, 1, 1], [7, 7, 7]]
 
-matrix_u = [[6, 7, 8], [4, 4, 4], [3, 3, 3]]
-matrix_v = [[2, 2, 2], [1, 0, 0], [0, 0, 1]]
 
 
 def matrix_matrix_add(matrix_b:list, matrix_c:list)->list:
@@ -136,8 +124,6 @@ def matrix_matrix_add(matrix_b:list, matrix_c:list)->list:
 
 #4  ######
 
-matrix_d =[[10,10,10],[7,7,7],[1,1,1]]
-vector_c = [1,0,2]
 
 
 
@@ -170,14 +156,10 @@ def matrix_vector_multi(matrix_d:list,vector_c:list)->list:
 
 
 
-print("Problem#4")
-print (matrix_vector_multi(matrix_d, vector_c))
-
 
 #55555555555555555555555
 
-matrix_a1 = [[2,8],[7,3]]
-matrix_b1 = [[1,4],[33,5]]
+
 
 def matrix_matrix_multi(matrix_a1:list,matrix_b1:list)->list:
     "Multiplies the vector stored as a list by a scalar"
@@ -203,10 +185,7 @@ def matrix_matrix_multi(matrix_a1:list,matrix_b1:list)->list:
         result[index] = matrix_vector_multi(matrix_a1,matrix_b1[index])
     return result
 
-print(matrix_b1)
-print(matrix_b1[1])
-print(matrix_b1[1][0])
-print(matrix_matrix_multi(matrix_a1,matrix_b1))
+
 
 
 #######################################################################################homework04
@@ -218,11 +197,9 @@ def abs_value(scalar: complex)-> float:
     Args: A complex or real number
     Returns: The absolute value of the input as a float
     """
-    z = scalar.conjugate()
-    x = (scalar*z)**(1/2)
+    z: complex = scalar.conjugate()
+    x: complex = (scalar*z)**(1/2)
     return x.real
-print(abs_value(9+10j))
-print(abs_value(-9))
 
 
 ####2
@@ -231,15 +208,13 @@ def p_norm(vector: list, scalar: float)->float:
        raise to the exponent of the scalar, sums the elements, then raises to the 1/scalar
        Args: A vector stored as a List, A scalar stored as a float
        Returns: The p-norm as a float """
-    result = 0
+    result: complex = 0
     for index in range(len(vector)):
-        y = (abs_value(vector[index]))**scalar
+        y: complex = (abs_value(vector[index]))**scalar
         result = result + y
     result = result**(1/scalar)
     return result
 
-print(p_norm([1,2,3],2))
-print(p_norm([-1,2,-3],3))
 
 
 ###3
@@ -247,16 +222,11 @@ def infinity_norm(vector: list)-> float:
     """A function that finds the infinity norm which is the max value
        Args: Vector stored as a list
        Returns: thr infinity norm returned as a float"""
-    result = []
+    result: list[complex] = []
     for index in range(len(vector)):
         result.append(abs_value(vector[index]))
-
-
     result = max(result)
     return result
-
-print(infinity_norm([1,2+5j,3]))
-print(infinity_norm([-20,2,3]))
 
 
 ####4
@@ -264,13 +234,11 @@ def boolean_p_norm(vector: list, boolean: bool = False, scalar: float = 2 )->flo
     """A function that returns the p norm or a boolean value depending on the inputs
        Args: Vector stored as a list, Boolean value as False as default, and a scalar stored as a float, default 2
         Returns:: the p norm as a float"""
-    if boolean ==True:
-        x = infinity_norm(vector)
+    if boolean == True:
+        return infinity_norm(vector)
     else:
-        x = p_norm(vector,scalar)
-    return x
+        return p_norm(vector, scalar)
 
-print(boolean_p_norm([4,2,7]))
 
 
 
@@ -281,22 +249,12 @@ def inner_product(vector_a: list, vector_b: list)->float:
     """A function that returns the inner product of two vectors
        Args: Vector a and Vector b stored as lists
        Returns: the inner product returned as a float"""
-    result = 0
+    result: complex = 0 + 0j
     for index in range(len(vector_a)):
-        y = vector_a[index]*vector_b[index]
+        y: complex = vector_a[index]*vector_b[index]
         result = result + y
     return result
 
-print(inner_product([1,2,5+6j],[4,3,5+6j]))
 
 
-def p_norm(vector: list, scalar: float ) ->float:
-    result = 0
-    for index in range(len(vector)):
-        y = (abs_value(vector[index]))**scalar
-        result = result + y
-    result = result**(1/scalar)
-    return result
 
-##print(p_norm([1,2,3],2))
-##print(p_norm([-1,2,-3],3))
