@@ -44,7 +44,8 @@ def least_squares(matrix_a: list, vector_a: list) -> list:
     """Returns:
     The least squares matrix"""
 
-
+    Q: list
+    R: list 
     Q, R = QR.Householder(matrix_a)
     Q_1 = QR.conjugate transpose(Q)
     Q_2 = LA.matrix_vector_multi(Q_1,vector_a)
