@@ -1,16 +1,4 @@
-
-
-
-
 import LA
-
-
-#1 Deleted Unstable QR
-
-matrix_qr1 = [[1,1,1],[-1,1,0],[1,2,1]]
-matrix_qr2 = [[1,1,3],[2,2,2],[2,2,-1]]
-
-
 
 
 
@@ -20,9 +8,9 @@ def stable_QR(matrix:list) -> list:
     """A function that performs the stable Gram-Schmidt to return the QR Factorization of a given matrix.
     Args: A matrix stored as a list of lists.
     Returns: The QR factorization as a new matrix"""
-    Q = [[0] * len(matrix[0]) for elements in matrix]
-    v = [0 for elements in matrix]
-    r = [[0] * len(matrix[0]) for elements in matrix]
+    Q: list[complex] = [[0] * len(matrix[0]) for elements in matrix]
+    v: list[complex] = [0 for elements in matrix]
+    r: list[complex] = [[0] * len(matrix[0]) for elements in matrix]
     for j in range (len(matrix)):
         v[j] = matrix[j]
     for k in range(len(matrix)):
@@ -34,32 +22,6 @@ def stable_QR(matrix:list) -> list:
 
     return [Q,r]
 
-print("problem 2 stableQR########################################")
-print(stable_QR(matrix_qr1))
-
-print("""answer for matrix_qr1 should be [[[0.5773502691896258, 0.5773502691896258, 0.5773502691896258],
- [-0.7071067811865475, 0.7071067811865475, 0.0],
-  [0.4082482904638618, 0.40824829046386235, -0.8164965809277268]],
- [[1.7320508075688772, 0, 0],
-  [0.0, 1.4142135623730951, 0],
-  [2.3094010767585034, 0.7071067811865475, 0.408248290463863]]]""")
-
-print("input 2 -> matrix_qr2")
-print(stable_QR(matrix_qr2))
-
-print("""answer for matrix_qr2 should be [[[0.30151134457776363, 0.30151134457776363, 0.9045340337332909],
-  [0.6396021490668313, 0.6396021490668313, -0.42640143271122105],
-  [0.0, 0.0, 1.0]],
- [[3.3166247903554, 0, 0],
-  [3.0151134457776365, 1.7056057308448835, 0],
-  [0.30151134457776363, 2.984810028978546, 6.661338147750939e-16]]]""")
-
-
-
-#####################################Homework06
-
-#1 Delete unstable gs
-
 
 #2 Orthonomal list return
 
@@ -68,9 +30,9 @@ def orthonormal_list_return(matrix:list) -> list:
     Uses the Qr factorization but only returns Q.
         Args: A matrix stored as a list of lists.
         Returns: The list of orthonormal vectors as a new matrix"""
-    Q = [[0] * len(matrix[0]) for elements in matrix]
-    v = [0 for elements in matrix]
-    r = [[0] * len(matrix[0]) for elements in matrix]
+    Q: list[complex] = [[0] * len(matrix[0]) for elements in matrix]
+    v: list[complex] = [0 for elements in matrix]
+    r: list[complex] = [[0] * len(matrix[0]) for elements in matrix]
     for j in range(len(matrix)):
         v[j] = matrix[j]
     for k in range(len(matrix)):
@@ -82,18 +44,6 @@ def orthonormal_list_return(matrix:list) -> list:
 
     return [Q]
 
-print(orthonormal_list_return(matrix_qr1))
-
-print("""answer for matrix_qr1 should be [[[0.5773502691896258, 0.5773502691896258, 0.5773502691896258],
- [-0.7071067811865475, 0.7071067811865475, 0.0],
-  [0.4082482904638618, 0.40824829046386235, -0.8164965809277268]]""")
-
-print("input 2 -> matrix_qr2")
-print(orthonormal_list_return(matrix_qr2))
-
-print("""answer for matrix_qr2 should be [[[0.30151134457776363, 0.30151134457776363, 0.9045340337332909],
-  [0.6396021490668313, 0.6396021490668313, -0.42640143271122105],
-  [0.0, 0.0, 1.0]]""")
 
 
 
@@ -118,16 +68,16 @@ def reflect_vector(vector_1: list)->list:
     """This function determines the reflection vector across an axis need to compute the householder algorithm
     input: a list as vector_1
     output: the reflected vector as a list v"""
-    e = [0 for element in range(len(vector_1))]
+    e: list[complex] = [0 for element in range(len(vector_1))]
     e[0] = 1
-    addend = scalar_vector_multi(sign(vector_1[0])  * boolean_p_norm(vector_1),e)
+    addend: list[complex] = scalar_vector_multi(sign(vector_1[0])  * boolean_p_norm(vector_1),e)
 
-    v = add_vectors(addend, vector_1)
+    v: list[complex] = add_vectors(addend, vector_1)
 
     return v
 
 
-def identity(size: int)->int:
+def identity(size: int)->list:
     """this function returns an identity matrix of a given size
     input: an integer that determines the size of the identity matrix
     output: a matrix of the size of the int"""
@@ -139,7 +89,16 @@ def identity(size: int)->int:
 
 
 def deep_copy(matrix_1: list) -> list:
-    "this function takes Q from Stable Grahm schmidt"
+    """Makes a deep copy of input matrix
+    This function makes a deep copy of the input matrix as a list
+    
+    Args:
+        matrix_1: input matrix
+    
+    Returns: A deep compy of the input matrix
+    """
+    
+    
     empty: list = [[0 for element in range(len(matrix_1[0]))] for index in range(len(matrix_1))]
     for x in range(len(matrix_1[0])):
         for y in range(len(matrix_1[0])):
@@ -148,6 +107,9 @@ def deep_copy(matrix_1: list) -> list:
 
 
 def conjugate_transpose(matrix_1: list) ->list:
+    """
+    
+    """
     empty: list = [[0 for element in  range(len(matrix_1[0]))] for index in range(len(matrix_1))]
     empty_2: list = [[0 for element in range(len(matrix_1[0]))] for index in range(len(matrix_1))]
     for x in range(len(matrix_1[0])):
@@ -164,7 +126,7 @@ def v_v_multi(vector_1,vector_2):
     """this funtion does V*V component of F
     input: 2 vectors as a list
     output: V*V"""
-    result = []
+    result:  = []
     vector_1 == vector_2
     for x in range(len(vector_1)):
         result.append(scalar_vector_multi(vector_1[x],vector_2))
