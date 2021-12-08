@@ -134,7 +134,15 @@ def v_v_multi(vector_1,vector_2):
 
 
 def f_builder(vector_1: list) -> list:
-    """This function returns the F component of the Householder algorithm """
+    """This function returns the F component of the Householder algorithm
+    Builds the F component of the householder matrix
+    
+    Args:
+        vector_1: input vector as a list
+    
+    Returns:
+        y: F component as a list
+    """
     s = -2/(boolean_p_norm(vector_1))**2
     x = scalar_matrix_multi(s,v_v_multi(vector_1,vector_1))
     y = matrix_matrix_add(identity(len(vector_1)), x)
@@ -142,16 +150,24 @@ def f_builder(vector_1: list) -> list:
 
 
 def Q_build(mtx :list, n: int):
-    """This function builds Q for the Householder"""
+    """This function builds Q for the Householder
+    Builds the Q component by the Householder matrix algorithm
+    
+    Args:
+        mtx: input matrix as a list
+        n: integer 
+    Returns:
+        Q: the q component of the householder matrix as a list.
+    """
     A: list = [[0 for j in range (n, len(mtx[i]))]for i in range(n,len(mtx))]
     for i in range(len(mtx)):
         for j in range(len(mtx[i])):
             if n+i < len(mtx[i]):
                 if n+j < len(mtx[i]):
                     A[i][j] = mtx[n+i][n+j]
-    v = reflect_vector(A[0])
-    f = f_builder(v)
-    Q = identity(len(mtx))
+    v: list = reflect_vector(A[0])
+    f: list = f_builder(v)
+    Q: list = identity(len(mtx))
     for i in range(n,len(Q)):
         for j in range(n, len(Q)):
             Q[i][j] = f[i-n][j-n]
@@ -177,9 +193,9 @@ def Householder(matrix_A: list) ->list:
         R = matrix_matrix_multi(Q_temp, R)
         Q_list.append(Q_temp)
     Q: list = Q_list[-1]
-    Q: list = conjugate_transpose(Q_list[0])
+    Q = conjugate_transpose(Q_list[0])
     for index1 in range(1, len(Q_list)):
-        ct = conjugate_transpose(Q_list[index1])
+        ct: list = conjugate_transpose(Q_list[index1])
         Q = matrix_matrix_multi(Q, ct)
     return Q, R
 
@@ -187,13 +203,3 @@ def Householder(matrix_A: list) ->list:
 
 
 
-print(Householder([[2,2,1],[-2,1,2],[18,0,0]]))
-
-#print(sign(-3))
-#print(reflect_vector([2,2,1]))
-#print(identity(1))
-#print(deep_copy([[2,2],[1,1]]))
-#print(conjugate_transpose([[2,3],[5,2-3j]]))
-#print(v_v_multi([5,2,1],[5,2,1]))
-#print(f_builder([4.8, 2.4]))
-#print(Q_build(f_builder([4.8, 2.4]), 1))
