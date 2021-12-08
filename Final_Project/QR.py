@@ -14,11 +14,11 @@ def stable_QR(matrix:list) -> list:
     for j in range (len(matrix)):
         v[j] = matrix[j]
     for k in range(len(matrix)):
-        r[k][k] = p_norm(v[k], 2)
-        Q[k] = scalar_vector_multi(1 / r[k][k], v[k])
+        r[k][k] = LA.p_norm(v[k], 2)
+        Q[k] = LA.scalar_vector_multi(1 / r[k][k], v[k])
         for j in range(len(matrix)):
-            r[j][k] = inner_product(Q[k],v[j])
-            v[j] = add_vectors(v[j],scalar_vector_multi(-r[j][k],Q[k]))
+            r[j][k] = LA.inner_product(Q[k],v[j])
+            v[j] = LA.add_vectors(v[j],LA.scalar_vector_multi(-r[j][k],Q[k]))
 
     return [Q,r]
 
@@ -36,11 +36,11 @@ def orthonormal_list_return(matrix:list) -> list:
     for j in range(len(matrix)):
         v[j] = matrix[j]
     for k in range(len(matrix)):
-        r[k][k] = p_norm(v[k], 2)
-        Q[k] = scalar_vector_multi(1 / r[k][k], v[k])
+        r[k][k] = LA.p_norm(v[k], 2)
+        Q[k] = LA.scalar_vector_multi(1 / r[k][k], v[k])
         for j in range(len(matrix)):
-            r[j][k] = inner_product(Q[k], v[j])
-            v[j] = add_vectors(v[j], scalar_vector_multi(-r[j][k], Q[k]))
+            r[j][k] = LA.inner_product(Q[k], v[j])
+            v[j] = LA.add_vectors(v[j], LA.scalar_vector_multi(-r[j][k], Q[k]))
 
     return [Q]
 
@@ -70,9 +70,9 @@ def reflect_vector(vector_1: list)->list:
     output: the reflected vector as a list v"""
     e: list[complex] = [0 for element in range(len(vector_1))]
     e[0] = 1
-    addend: list[complex] = scalar_vector_multi(sign(vector_1[0])  * boolean_p_norm(vector_1),e)
+    addend: list[complex] = LA.scalar_vector_multi(sign(vector_1[0])  * LA.boolean_p_norm(vector_1),e)
 
-    v: list[complex] = add_vectors(addend, vector_1)
+    v: list[complex] = LA.add_vectors(addend, vector_1)
 
     return v
 
@@ -126,10 +126,10 @@ def v_v_multi(vector_1,vector_2):
     """this funtion does V*V component of F
     input: 2 vectors as a list
     output: V*V"""
-    result:  = []
-    vector_1 == vector_2
+    result: list = []
+    #vector_1 == vector_2
     for x in range(len(vector_1)):
-        result.append(scalar_vector_multi(vector_1[x],vector_2))
+        result.append(LA.scalar_vector_multi(vector_1[x], vector_2))
     return result
 
 
@@ -143,9 +143,9 @@ def f_builder(vector_1: list) -> list:
     Returns:
         y: F component as a list
     """
-    s = -2/(boolean_p_norm(vector_1))**2
-    x = scalar_matrix_multi(s,v_v_multi(vector_1,vector_1))
-    y = matrix_matrix_add(identity(len(vector_1)), x)
+    s = -2/(LA.boolean_p_norm(vector_1))**2
+    x = LA.scalar_matrix_multi(s,v_v_multi(vector_1,vector_1))
+    y = LA.matrix_matrix_add(identity(len(vector_1)), x)
     return y
 
 
@@ -190,13 +190,13 @@ def Householder(matrix_A: list) ->list:
     Q_list: list = []
     for index in range(len(R)):
         Q_temp: list = Q_build(R,index)
-        R = matrix_matrix_multi(Q_temp, R)
+        R = LA.matrix_matrix_multi(Q_temp, R)
         Q_list.append(Q_temp)
     Q: list = Q_list[-1]
     Q = conjugate_transpose(Q_list[0])
     for index1 in range(1, len(Q_list)):
         ct: list = conjugate_transpose(Q_list[index1])
-        Q = matrix_matrix_multi(Q, ct)
+        Q = LA.matrix_matrix_multi(Q, ct)
     return Q, R
 
 

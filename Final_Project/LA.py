@@ -54,7 +54,7 @@ def scalar_vector_multi(scalar_a:float, vector_a:list)->list:
 
 
 
-print(scalar_vector_multi(scalar_a,vector_a))
+
 
 
 #2.Matrix-Scalar Multiplication #############################################################################
