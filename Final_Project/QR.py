@@ -183,9 +183,9 @@ def Q_build(mtx :list, n: int):
 def Householder(matrix_A: list) ->list:
     "This function takes a matrix as a lists of list and returns QR factorization using householder"
     """ARGS:
-    matrix_A: the input matrix stores as a list of a list
+        matrix_A: the input matrix stores as a list of a list
     Returns:
-    Q,R: returns the QR factorization of the matrix_A using the Householder algorith."""
+        Q,R: returns the QR factorization of the matrix_A using the Householder algorithm."""
     R: list = deep_copy(matrix_A)
     Q_list: list = []
     for index in range(len(R)):

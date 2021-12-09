@@ -2,6 +2,15 @@
 import pytest
 import QR
 
+scalar_01 = 2
+scalar_02 = -2
+
+q_build_1 = [4.8, 2.4]
+q_build_2 = [4.8, 9.6]
+
+
+qr_vector_1 = [1,2,3]
+qr_vector_2 = [2,1,1]
 
 matrix_qr1 = [[1,1,1],[-1,1,0],[1,2,1]]
 matrix_qr2 = [[1,1,3],[2,2,2],[2,2,-1]]
@@ -40,6 +49,53 @@ def test_stable_QR():
  [[3.0, 0.0, 0.0],
   [0.0, 3.0, 0.0],
   [16.666666666666664, -11.666666666666666, 3.333333333333333]]]
+
+
+def test_sign():
+    assert QR.sign(scalar_01) == 1
+
+def test_sign():
+    assert QR.sign(scalar_02) == -1
+
+def test_reflect_vector():
+    assert  QR.reflect_vector(qr_vector_1) == [4.741657386773941, 2.0, 3.0]
+
+def test_reflect_vector():
+    assert  QR.reflect_vector(qr_vector_2) == [4.449489742783178, 1.0, 1.0]
+
+def test_identity():
+    assert QR.identity(3) == [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+
+def test_identity():
+    assert QR.identity(4) == [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+
+def test_deep_copy():
+    assert QR.deep_copy(matrix_qr1) == [[1, 1, 1], [-1, 1, 0], [1, 2, 1]]
+
+def test_deep_copy():
+    assert QR.deep_copy(matrix_qr2) == [[1, 1, 3], [2, 2, 2], [2, 2, -1]]
+
+def test_v_v_multi():
+    assert QR.v_v_multi(qr_vector_1,qr_vector_2) == [[2, 1, 1], [4, 2, 2], [6, 3, 3]]
+
+def test_v_v_multi():
+    assert QR.v_v_multi(qr_vector_2,qr_vector_1) == [[2, 4, 6], [1, 2, 3], [1, 2, 3]]
+
+def test_f_builder():
+    assert QR.f_builder(qr_vector_1) == [[0.8571428571428572, -0.2857142857142857, -0.42857142857142855],
+ [-0.2857142857142857, 0.4285714285714286, -0.8571428571428571],
+ [-0.42857142857142855, -0.8571428571428571, -0.2857142857142856]]
+
+def test_f_builder():
+    assert QR.f_builder(qr_vector_2) == [[-0.3333333333333335, -0.6666666666666667, -0.6666666666666667],
+ [-0.6666666666666667, 0.6666666666666666, -0.33333333333333337],
+ [-0.6666666666666667, -0.33333333333333337, 0.6666666666666666]]
+
+def test_Q_build():
+    assert QR.Q_build(QR.f_builder(q_build_1), 1) == [[1, 0], [0, -1.0]]
+
+def test_Q_build():
+    assert QR.Q_build(QR.f_builder(q_build_2), 1) == [[1, 0], [0, -1.0]]
 
 
 def test_Householder():
