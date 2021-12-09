@@ -107,7 +107,11 @@ def deep_copy(matrix_1: list) -> list:
 
 
 def conjugate_transpose(matrix_1: list) ->list:
-    """
+    """This function returns the conjugate transpose needed for the householder algorithm
+    Args:
+        matrix_1: the input matrix
+    Returns:
+        The conjugate transpose of the input matrix as a list.
     
     """
     empty: list = [[0 for element in  range(len(matrix_1[0]))] for index in range(len(matrix_1))]
@@ -125,7 +129,7 @@ def conjugate_transpose(matrix_1: list) ->list:
 def v_v_multi(vector_1,vector_2):
     """this funtion does V*V component of F
     input: 2 vectors as a list
-    output: V*V"""
+    output: V*V needed for the component of F needed for Householder"""
     result: list = []
     #vector_1 == vector_2
     for x in range(len(vector_1)):
