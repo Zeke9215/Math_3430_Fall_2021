@@ -47,9 +47,9 @@ bs_vector_1 = [4,4,2]
 bs_matrix_2 = [[1,2,3],[2,2,1],[2,1,2]]
 bs_vector_2 = [2,2,1]
 
-
+print("LA")
 print(LA.add_vectors(test_vector_01,test_vector_02))
-print(LA.scalar_vector_multi(test_vector_01,test_vector_02))
+print(LA.scalar_vector_multi(scalar_01,test_vector_02))
 print(LA.scalar_matrix_multi(scalar_01,test_matrix_01))
 print(LA.matrix_matrix_add(test_matrix_01,test_matrix_02))
 print(LA.matrix_vector_multi(test_matrix_01,test_vector_02))
@@ -60,9 +60,22 @@ print(LA.infinity_norm(test_vector_03))
 print(LA.boolean_p_norm(boolean_p_norm_vector_01))
 print(LA.inner_product(inner_product_vector_03,inner_product_vector_01))
 
+print("QR")
 print(QR.stable_QR(matrix_qr1))
 print(QR.orthonormal_list_return(matrix_qr2))
+
+print("Householder and components")
+print(QR.sign(scalar_01))
+print(QR.reflect_vector(test_vector_01))
+print(QR.identity(3))
+print(QR.deep_copy(test_matrix_01))
+print(QR.conjugate_transpose(matrix_qr1))
+print(QR.v_v_multi(test_vector_01,test_vector_02))
+print(QR.f_builder(test_vector_01))
+print(QR.Q_build(test_matrix_01,1))
+print("Householder")
 print(QR.Householder(house_matrix1))
 
+print("LS")
 print(LS.backsub(bs_matrix_1,bs_vector_1))
 print(LS.least_squares(bs_matrix_2,bs_vector_2))
