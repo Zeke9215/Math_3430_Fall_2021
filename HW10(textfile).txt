@@ -1,0 +1,6 @@
+A computing project I would find interesting is tracking real world data and returning valuable information.
+An example would be tracking the real-time price for stocks and using algorithms to keep track of the min/max on a given interval. 
+Using for and while loops along with other elements of computing we have learned in this class, I would be able to script a bot that buys or sells based on the parameters of 
+the algorithm. This would make uses of a variety of functions inside an algorithm to return valuable information, that will then have to pass a check in order to buy or sell or hold.
+This would be a great project to expand on algorithm building, and would make use of many python packages to make the algorithm easier.
+After prototyping on python, you could then move your algorithm to more specific languages that may be better suited for this task, in addition to being able to learn an new computing language.
