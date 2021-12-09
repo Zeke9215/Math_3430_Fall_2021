@@ -63,3 +63,6 @@ print(LA.inner_product(inner_product_vector_03,inner_product_vector_01))
 print(QR.stable_QR(matrix_qr1))
 print(QR.orthonormal_list_return(matrix_qr2))
 print(QR.Householder(house_matrix1))
+
+print(LS.backsub(bs_matrix_1,bs_vector_1))
+print(LS.least_squares(bs_matrix_2,bs_vector_2))
